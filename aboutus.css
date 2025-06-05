@@ -1,0 +1,150 @@
+
+.about-container {
+  padding: 50px 10%;
+  font-family: 'League Spartan', sans-serif;
+  background-color: #f8f4ff;
+  color: #333;
+  line-height: 1.6;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%238c81ed' fill-opacity='0.1' d='M0 0h100v100H0z'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+.about-container h1,
+.about-container h2 {
+  color: #8c81ed;
+}
+
+.intro p {
+  font-size: 1.2rem;
+}
+
+.problem-solution {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.problem, .solution {
+  flex: 1 1 300px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.quote {
+  background: #8c81ed;
+  color: white;
+  padding: 30px;
+  margin: 40px 0;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.quote blockquote {
+  margin: 0;
+}
+
+.team img {
+  max-width: 100%;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+.back-button {
+  background-color: transparent;
+  border: 2px solid #8c81ed;
+  color: #8c81ed;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none; /* in case it's an anchor */
+}
+
+.back-button:hover {
+  background-color: #8c81ed;
+  color: white;
+  box-shadow: 0 4px 15px rgba(140, 129, 237, 0.6);
+  transform: translateY(-2px);
+}
+
+.back-button svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+.vision, .team {
+  background: white;
+  padding: 30px;
+  margin-top: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.vision:hover, .team:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(140, 129, 237, 0.15);
+}
+
+.vision h2, .team h2 {
+  color: #8c81ed;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+.vision p, .team p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+}
+
+.team img {
+  max-width: 100%;
+  margin-top: 15px;
+  border-radius: 10px;
+  border: 2px solid #8c81ed;
+}
+
+.team p::before {
+  content: "👩‍💻 ";
+  font-size: 1.2rem;
+}
+
+.fancy-divider {
+  border: none;
+  height: 4px;
+  background: linear-gradient(to right, #8c81ed, #f8f4ff);
+  margin: 50px 0;
+  border-radius: 10px;
+}
+
+.community {
+  background: linear-gradient(145deg, #f8f4ff, #f0ebff);
+  padding: 40px;
+  border-radius: 12px;
+  margin-top: 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.community h2 {
+  font-size: 2rem;
+  color: #8c81ed;
+  margin-bottom: 20px;
+}
+
+.community p {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.8;
+  margin: 10px 0;
+}

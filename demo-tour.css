@@ -1,0 +1,127 @@
+.demo-container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+  font-family: 'League Spartan', sans-serif;
+  background-color: #f8f4ff;
+  color: #333;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.intro h2 {
+  color: #8c81ed;
+  font-size: 2rem;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #444;
+}
+
+.description {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.features-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.feature-box {
+  flex: 1;
+  min-width: 300px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  border-left: 5px solid #8c81ed;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.feature-box h3 {
+  color: #8c81ed;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.divider {
+  border: none;
+  height: 2px;
+  background: #8c81ed;
+  margin: 50px 0;
+}
+
+.highlight {
+  text-align: center;
+}
+
+.highlight h3 {
+  color: #8c81ed;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+.highlight-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.highlight-box {
+  flex: 1;
+  min-width: 300px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(140, 129, 237, 0.05);
+}
+
+@media (max-width: 768px) {
+  .features-grid,
+  .highlight-grid {
+    flex-direction: column;
+  }
+}
+
+.back-button {
+  background-color: transparent;
+  border: 2px solid #8c81ed;
+  color: #8c81ed;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none; 
+}
+
+.back-button:hover {
+  background-color: #8c81ed;
+  color: white;
+  box-shadow: 0 4px 15px rgba(140, 129, 237, 0.6);
+  transform: translateY(-2px);
+}
+
+.back-button svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}

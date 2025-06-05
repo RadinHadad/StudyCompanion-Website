@@ -1,0 +1,134 @@
+body {
+  font-family: 'League Spartan', sans-serif;
+  background-color: #f8f4ff; /* soft pink */
+  color: #333;
+  margin: 0;
+  padding: 0 20px 40px;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #8c81ed; /* purple */
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.logo {
+  height: 50px;
+  margin-right: 30px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.nav-links a,
+.back-button {
+  background-color: transparent;
+  border: 2px solid #8c81ed;
+  color: #8c81ed;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none; /* in case it's an anchor */
+}
+
+.back-button:hover {
+  background-color: #8c81ed;
+  color: white;
+  box-shadow: 0 4px 15px rgba(140, 129, 237, 0.6);
+  transform: translateY(-2px);
+}
+
+.back-button svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+main.faq-container {
+  max-width: 900px;
+  margin: 40px auto 60px;
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(140, 129, 237, 0.15);
+}
+
+main.faq-container h1 {
+  font-size: 2.8rem;
+  color: #8c81ed;
+  margin-bottom: 30px;
+  text-align: center;
+  letter-spacing: 1.5px;
+}
+
+.faq-item {
+  margin-bottom: 25px;
+  border-bottom: 1px solid #e1dfff;
+  padding-bottom: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.faq-item h3 {
+  font-size: 1.3rem;
+  color: #5a51c8;
+  margin-bottom: 8px;
+  letter-spacing: 0.8px;
+}
+
+.faq-item p {
+  font-size: 1rem;
+  color: #444;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.faq-item:hover {
+  background-color: #f0ebff;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(140,129,237,0.1);
+  cursor: default;
+}
+
+body {
+  background: linear-gradient(135deg, #f8f4ff, #e3dbff);
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('data:image/svg+xml;utf8,\
+  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100">\
+    <circle cx="50" cy="50" r="48" stroke="%238c81ed" stroke-opacity="0.15" fill="none" stroke-width="2"/>\
+    <circle cx="50" cy="50" r="32" stroke="%238c81ed" stroke-opacity="0.1" fill="none" stroke-width="1"/>\
+    <circle cx="50" cy="50" r="16" stroke="%238c81ed" stroke-opacity="0.05" fill="none" stroke-width="1"/>\
+  </svg>');
+  background-repeat: repeat;
+  background-position: center;
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+

@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'League Spartan', sans-serif;
+  background: linear-gradient(45deg, #e5dfff, #cbc0ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.signin-container {
+  background-color: white;
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(140, 129, 237, 0.3);
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  animation: fadeIn 1.2s ease-out;
+}
+
+h1 {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #8c81ed, #64b6ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input {
+  padding: 0.8rem;
+  border: 2px solid #8c81ed;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: box-shadow 0.3s;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(140, 129, 237, 0.6);
+}
+
+button {
+  background: linear-gradient(135deg, #64b6ff, #8c81ed);
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(100, 182, 255, 0.4);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #4b2a72, #8c81ed);
+  box-shadow: 0 0 20px rgba(100, 182, 255, 0.6);
+  transform: translateY(-3px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

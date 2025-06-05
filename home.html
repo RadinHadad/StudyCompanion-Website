@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Companion - Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <header>
+    <img src="images/studentplannerlogo-removebg-preview.png" alt="Study Companion Logo" class="logo" />
+    <nav class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="media.html">Media</a>
+      <a href="study-tips.html">Study Tips</a>
+    </nav>
+  </header>
+
+  <main class="home-main fade-in">
+    <section class="welcome-box">
+      <h1>Welcome to Study Companion!</h1>
+      <p>Your personalized student study planner experience starts here.</p>
+    </section>
+    <section class="daily-quote animated-quote typewriter-container">
+  <h2><span class="emoji">📘</span> Daily Motivation</h2>
+  <blockquote>
+    <p id="typewriter-text"></p>
+    <footer id="typewriter-author"></footer>
+  </blockquote>
+</section>
+<section class="study-streak">
+  <div class="streak-box">
+    <h2>🔥 Your Study Streak</h2>
+    <p>You’ve studied for <span id="streak-count">0</span> day<span id="streak-s">s</span> in a row!</p>
+  </div>
+</section>
+
+
+
+    <main class="home-cards">
+  <a href="dashboard.html" class="home-card" style="background-image: url('images/dashboard-bg.png');">
+    <div class="card-overlay">
+      <h2>📋 Dashboard</h2>
+    </div>
+  </a>
+  
+  <a href="media.html" class="home-card" style="background-image: url('images/media-bg.jpg');">
+    <div class="card-overlay">
+      <h2>🎬 Media</h2>
+    </div>
+  </a>
+
+  <a href="study-tips.html" class="home-card" style="background-image: url('images/study-tips-bg.png');">
+    <div class="card-overlay">
+      <h2>📚 Study Tips</h2>
+    </div>
+  </a>
+</main>
+
+ <section class="pomodoro-timer">
+  <h2>⏱ Pomodoro Timer</h2>
+  <div id="timer-display">25:00</div>
+  <div class="pomodoro-controls">
+    <button id="start-timer">Start</button>
+    <button id="pause-timer">Pause</button>
+    <button id="reset-timer">Reset</button>
+  </div>
+  <p id="session-label">Work Session</p>
+</section>
+
+  </main>
+  <footer>
+    <p>Study Companion ©2025 | All Rights Reserved</p>
+    
+    <a href="aboutus.html">
+       <img src="images/information.png" alt="Info Icon" class="info-icon" />
+        About us</a>
+  </footer>
+ <script>
+const quotes = [
+  { text: "Success doesn’t come from what you do occasionally, but from consistency.", author: "Marie Forleo" },
+  { text: "Education is the most powerful weapon which you can use to change the world.", author: "Nelson Mandela" },
+  { text: "Push yourself, because no one else is going to do it for you.", author: "Unknown" },
+  { text: "The expert in anything was once a beginner.", author: "Helen Hayes" },
+  { text: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson" },
+  { text: "Dream big, work hard, stay focused, and surround yourself with good people.", author: "Unknown" }
+];
+
+const textEl = document.getElementById("typewriter-text");
+const authorEl = document.getElementById("typewriter-author");
+
+let quoteIndex = 0;
+let charIndex = 0;
+let typing = true;
+
+function typeQuote() {
+  const quote = quotes[quoteIndex].text;
+  const author = quotes[quoteIndex].author;
+
+  if (typing) {
+    if (charIndex < quote.length) {
+      textEl.textContent += quote.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeQuote, 50);
+    } else {
+      typing = false;
+      authorEl.textContent = `— ${author}`;
+      setTimeout(() => eraseQuote(), 3000); // pause before erasing
+    }
+  }
+}
+
+function eraseQuote() {
+  const quote = quotes[quoteIndex].text;
+  if (charIndex > 0) {
+    textEl.textContent = quote.substring(0, charIndex - 1);
+    charIndex--;
+    setTimeout(eraseQuote, 20);
+  } else {
+    typing = true;
+    quoteIndex = (quoteIndex + 1) % quotes.length;
+    authorEl.textContent = "";
+    setTimeout(typeQuote, 500);
+  }
+}
+
+typeQuote(); // start the animation
+</script>
+<script>
+function getTodayDate() {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+}
+
+function loadStreak() {
+  const storedStreak = localStorage.getItem("studyStreak");
+  const lastVisited = localStorage.getItem("lastVisit");
+
+  let currentStreak = 1;
+  const today = getTodayDate();
+
+  if (storedStreak && lastVisited) {
+    const lastVisitDate = new Date(lastVisited);
+    const diffDays = Math.floor((today - lastVisitDate) / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 1) {
+      currentStreak = parseInt(storedStreak) + 1;
+    } else if (diffDays === 0) {
+      currentStreak = parseInt(storedStreak); // already visited today
+    } else {
+      currentStreak = 1; // reset streak
+    }
+  }
+
+  localStorage.setItem("studyStreak", currentStreak);
+  localStorage.setItem("lastVisit", today.toISOString());
+
+  document.getElementById("streak-count").textContent = currentStreak;
+  document.getElementById("streak-s").style.display = currentStreak === 1 ? "none" : "inline";
+}
+
+loadStreak();
+</script>
+<script>
+let timer;
+let isRunning = false;
+let timeLeft = 25 * 60;
+let isWorkSession = true;
+
+const timerDisplay = document.getElementById('timer-display');
+const startBtn = document.getElementById('start-timer');
+const pauseBtn = document.getElementById('pause-timer');
+const resetBtn = document.getElementById('reset-timer');
+const sessionLabel = document.getElementById('session-label');
+
+function updateDisplay() {
+  const minutes = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+  const seconds = (timeLeft % 60).toString().padStart(2, '0');
+  timerDisplay.textContent = `${minutes}:${seconds}`;
+}
+
+function startTimer() {
+  if (!isRunning) {
+    timer = setInterval(() => {
+      if (timeLeft > 0) {
+        timeLeft--;
+        updateDisplay();
+      } else {
+        clearInterval(timer);
+        isRunning = false;
+        isWorkSession = !isWorkSession;
+        timeLeft = isWorkSession ? 25 * 60 : 5 * 60;
+        sessionLabel.textContent = isWorkSession ? "Work Session" : "Break Time!";
+        updateDisplay();
+      }
+    }, 1000);
+    isRunning = true;
+  }
+}
+
+function pauseTimer() {
+  clearInterval(timer);
+  isRunning = false;
+}
+
+function resetTimer() {
+  clearInterval(timer);
+  isRunning = false;
+  timeLeft = isWorkSession ? 25 * 60 : 5 * 60;
+  updateDisplay();
+}
+
+startBtn.addEventListener('click', startTimer);
+pauseBtn.addEventListener('click', pauseTimer);
+resetBtn.addEventListener('click', resetTimer);
+
+updateDisplay(); // Initial display</script>
+
+
+
+</body>
+</html>

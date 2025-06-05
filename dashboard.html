@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - Study Companion</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Header -->
+  <header>
+    <img src="images/studentplannerlogo-removebg-preview.png" alt="Study Companion Logo" class="logo" />
+    <nav class="nav-links">
+      <a href="home.html">Home</a>
+      <a href="demo-tour.html">Demo and Tour</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </header>
+
+  <!-- Dashboard Content -->
+  <main class="dashboard-container">
+    <section class="task-section">
+      <h2>This Week :</h2>
+      <div id="this-week" class="task-list"></div>
+
+      <h2>Upcoming :</h2>
+      <div id="upcoming" class="task-list"></div>
+
+      <p id="empty-msg">Dashboard is looking empty. Let's add some tasks!</p>
+    </section>
+
+    <aside class="sidebar">
+      <button id="add-task-btn" class="btn green">Add Task</button>
+      <button id="remove-task-btn" class="btn red">Remove Task</button>
+      <button id="update-progress-btn" class="btn blue">Update Progress</button>
+      <button id="edit-task-btn" class="btn purple">Edit Task</button>
+         <button id="progress-chart-btn" class="btn purple">Progress Charts</button>
+     
+
+      <button id="calendar-btn" class="styled-button">
+        <img src="images/calendar.png" alt="View Calendar" class="calendar-icon">
+      </button>
+
+ 
+
+
+      <p class="today-date">Today – <span id="today-date"></span></p>
+      
+
+      
+
+      
+    </aside>
+    
+  </main>
+ 
+
+ 
+
+
+  <!-- Modals -->
+
+<div id="removeTaskModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" onclick="closeRemoveTaskModal()">&times;</span>
+    <h2>Remove Task</h2>
+    <label for="removeTaskSelect">Select a task to remove:</label>
+    <select id="removeTaskSelect" style="width: 100%; margin: 10px 0;"></select>
+    <button id="confirmRemoveTaskBtn">Remove</button>
+  </div>
+</div>
+
+  
+  <div class="modal" id="task-modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Add Task</h3>
+      <form id="task-form">
+        <label>Due Date: <input type="date" required /></label>
+        <label>Task Name: <input type="text" required /></label>
+        <label>Priority (1-10): <input type="number" min="1" max="10" required /></label>
+        <button type="submit">Add</button>
+      </form>
+    </div>
+  </div>
+<!-- Flashcard Modal -->
+<div id="flashcard-modal" class="modal">
+  <div class="modal-content flashcard-content">
+    <span class="close" id="close-flashcard-modal">&times;</span>
+    <h2 id="flashcard-task-title">Flashcards</h2>
+    <button id="shuffleToggle">Shuffle: Off</button>
+
+
+    <div class="flashcard-tabs">
+      <button id="add-tab" class="tab active">Add Flashcard</button>
+      <button id="view-tab" class="tab">View Flashcards</button>
+    </div>
+
+    <div id="add-flashcard-section">
+      <textarea id="new-flashcard-text" placeholder="Enter flashcard text..."></textarea>
+      <button id="save-flashcard-btn" class="styled-button">Save Flashcard</button>
+    </div>
+    
+
+    <div id="view-flashcard-section" style="display: none;">
+ <div id="flashcard-display" class="swipe-card">
+  <div class="swipe-card-inner" id="swipe-inner">
+    <div class="swipe-card-content" id="flashcard-content"></div>
+  </div>
+</div>
+
+
+      <div class="flashcard-nav">
+        <button id="prev-card" class="styled-button">◀</button>
+        <button id="next-card" class="styled-button">▶</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Calendar Modal -->
+<div id="calendar-modal" class="modal">
+  <div class="modal-content large">
+    <span class="close" id="close-calendar-modal">&times;</span>
+    <h2> <div class="calendar-header">
+    <h2 id="calendar-month"></h2>
+  </div>
+</h2>
+    <div id="calendar"></div>
+  </div>
+  
+</div>
+<!-- Progress Charts Modal -->
+<div class="modal" id="chart-modal">
+  <div class="modal-content large">
+    <span class="close" onclick="closeChartModal()">&times;</span>
+    <h3>📊 Task Progress Charts</h3>
+    <div id="chart-grid" class="chart-grid"></div>
+  </div>
+</div>
+
+<!-- Calendar Day Task Modal -->
+<div id="calendar-task-modal">
+  <div class="modal-content">
+    <span class="close" id="close-calendar-task-modal">&times;</span>
+    <h3>Tasks Due</h3>
+    <ul id="calendar-task-list"></ul>
+  </div>
+</div>
+
+
+
+  <div class="modal" id="progress-modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Update Progress</h3>
+      <form id="progress-form">
+  <label>Select Task:
+    <select id="progress-task-select"></select>
+  </label>
+  <label>Progress Summary:
+    <textarea id="progress-text" required></textarea>
+  </label>
+  <label>Confidence (1-10):
+    <input type="number" id="confidence" min="1" max="10" required />
+  </label>
+  <label>Completed %:
+    <input type="number" id="percent" min="0" max="100" required />
+  </label>
+  <button type="submit">Update</button>
+</form>
+<!-- Progress Charts Modal -->
+
+
+    </div>
+  </div>
+
+  <!-- Edit Task Modal -->
+<div id="editTaskModal" class="modal" style="display:none;">
+  <div class="modal-content">
+    <span class="close" onclick="closeEditTaskModal()">&times;</span>
+    <h2>Edit Task</h2>
+
+    <label for="editTaskSelect">Select task:</label>
+    <select id="editTaskSelect" style="width: 100%; margin: 8px 0;"></select>
+
+    <label for="editTaskName">New name:</label>
+    <input type="text" id="editTaskName" style="width: 100%; margin: 8px 0;" />
+
+    <label for="editTaskPriority">New priority (1–10):</label>
+    <input type="number" id="editTaskPriority" min="1" max="10" style="width: 100%; margin: 8px 0;" />
+
+    <button id="confirmEditTaskBtn">Save Changes</button>
+  </div>
+</div>
+
+
+ 
+
+
+  <script src="dashboard.js" defer></script>
+</body>
+</html>
